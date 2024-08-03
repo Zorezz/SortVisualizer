@@ -6,10 +6,11 @@ allows me to practice implementing the sorting algorithms.
 # Building
 This project requires SDL2 so make sure to install the library first.
 
-`
+```
 git clone https://github.com/Zorezz/SortVisualizer.git
+cd SortVisualizer
 mkdir build
 cd build
 cmake ..
 make
-`
+```
