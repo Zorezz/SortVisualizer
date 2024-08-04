@@ -14,3 +14,5 @@ cd build
 cmake ..
 make
 ```
+# Example
+![Insertion Sort](media/insertion.gif)
