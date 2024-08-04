@@ -15,4 +15,4 @@ cmake ..
 make
 ```
 # Example
-![Insertion Sort](media/insertion.gif)
+<img src="media/insertion.gif" data-canonical-src="media/insertion.gif" width="500" height="320" />
