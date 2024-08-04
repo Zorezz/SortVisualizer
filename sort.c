@@ -14,6 +14,7 @@ int arr2[ARRAY_LENGTH];
 
 SDL_Window* window = NULL;
 SDL_Renderer* renderer = NULL;
+SDL_Surface* screenSurface = NULL;
 
 bool complete = false;
 
@@ -37,29 +38,24 @@ int main (int argc, char* argv[]) {
 int init() {
     int success = 1;
 
-    if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-        printf("Initialize SDL failed, Error: %s", SDL_GetError());
+    if ( SDL_Init( SDL_INIT_VIDEO ) < 0 ) {
+        printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
         success = 0;
     }
     else {
-        if (!(SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1"))) {
-            printf("Linear Texture Filtering not enabled.\n");
-        }
-
-        window=SDL_CreateWindow("Sorting Visualizer", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
-        if (window == NULL) {
-            printf("Unable to create window. Error: %s", SDL_GetError());
+        window = SDL_CreateWindow( "Sorting Visualizer", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );\
+        if ( window == NULL ) {
+            printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
             success = 0;
         }
         else {
-            renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-            if (renderer == NULL) {
-                printf("Unable to create renderer. Error: %s", SDL_GetError());
-                success = 0;
+            renderer = SDL_CreateRenderer(window, -1, 0);
+            if ( renderer == NULL ) {
+                printf("Renderer could not be created! SDL_Error: %s\n", SDL_GetError());
+                success = false;
             }
         }
     }
-
     return success;
 }
 
@@ -189,7 +185,7 @@ int controls() {
     );
 
     int input;
-    scanf("%c", &input);
+    scanf("%d", &input);
 
     if(input == -1) {
         return 0;
